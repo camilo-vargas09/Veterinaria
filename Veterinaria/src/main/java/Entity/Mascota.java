@@ -42,4 +42,4 @@ public class Mascota {
             inverseJoinColumns = @JoinColumn(name = "veterinario_id")
     )
     private List<Veterinario> veterinarios;
-}gi
+}
