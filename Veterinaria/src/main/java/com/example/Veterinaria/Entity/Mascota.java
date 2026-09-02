@@ -1,10 +1,12 @@
-package Entity;
+package com.example.Veterinaria.Entity;
 
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+
+import java.util.*;
 
 @Entity
 @Table(name ="Mascota")
@@ -25,16 +27,16 @@ public class Mascota {
     private Integer edad;
     private double peso;
 
-    // Relación 1 a N con Propietario
+
     @ManyToOne
     @JoinColumn(name = "propietario_id", nullable = false)
     private Propietario propietario;
 
-    // Relación 1 a 1 con Historia Clínica
+
     @OneToOne(mappedBy = "mascota", cascade = CascadeType.ALL, orphanRemoval = true)
     private HistoriaClinica historiaClinica;
 
-    // Relación N a M con Veterinario
+
     @ManyToMany
     @JoinTable(
             name = "mascota_veterinario",
