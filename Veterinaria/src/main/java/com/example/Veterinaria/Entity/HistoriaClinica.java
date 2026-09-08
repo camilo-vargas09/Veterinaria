@@ -1,9 +1,13 @@
 package com.example.Veterinaria.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import java.time.LocalDate;
 
 @Entity
@@ -25,6 +29,9 @@ public class HistoriaClinica {
 
 
     @OneToOne
+    @JsonBackReference
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @JoinColumn(name = "mascota_id", nullable = false, unique = true)
     private Mascota mascota;
 

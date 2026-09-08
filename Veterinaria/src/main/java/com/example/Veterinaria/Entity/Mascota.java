@@ -1,10 +1,14 @@
 package com.example.Veterinaria.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.*;
 
@@ -29,6 +33,9 @@ public class Mascota {
 
 
     @ManyToOne
+    @JsonBackReference
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @JoinColumn(name = "propietario_id", nullable = false)
     private Propietario propietario;
 
@@ -43,5 +50,6 @@ public class Mascota {
             joinColumns = @JoinColumn(name = "mascota_id"),
             inverseJoinColumns = @JoinColumn(name = "veterinario_id")
     )
+    @JsonIgnoreProperties("mascotas")
     private List<Veterinario> veterinarios;
 }
